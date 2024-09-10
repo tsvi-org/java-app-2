@@ -15,6 +15,7 @@ cleanup() {
 # Trap the EXIT signal to perform cleanup
 trap cleanup EXIT
 
+
 set -e # Exit immediately if a command exits with a non-zero status.
 mvn clean package -Dmaven.test.skip=true
 docker run -d -p 6379:6379 --name redis_container redis
