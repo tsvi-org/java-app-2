@@ -299,11 +299,11 @@ jobs:
           INDEX_JSON=$(jq --null-input --compact-output '. |= [inputs]' <<< ${INDEX_LIST}) # convert the list to the json
           echo "json=${INDEX_JSON}" >> $GITHUB_OUTPUT # save the json to the GITHUB_OUTPUT environment variable
 
-  deploy:
-    needs: [build-and-publish-docker-image] # this job needs build-and-publish-docker-image job as a requirement to run
-    uses: ./.github/workflows/cd.yml
-    with:
-      # with tag from the build-and-publish-docker-image job in the output_tags step
-      image_tag: "${{ needs.build-and-publish-docker-image.outputs.image_tag }}"
-      debug: "${{ github.event.inputs.debug_deployment }}"
-    secrets: inherit
+  # deploy:
+  #   needs: [build-and-publish-docker-image] # this job needs build-and-publish-docker-image job as a requirement to run
+  #   uses: ./.github/workflows/cd.yml
+  #   with:
+  #     # with tag from the build-and-publish-docker-image job in the output_tags step
+  #     image_tag: "${{ needs.build-and-publish-docker-image.outputs.image_tag }}"
+  #     debug: "${{ github.event.inputs.debug_deployment }}"
+  #   secrets: inherit
